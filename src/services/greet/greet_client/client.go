@@ -38,7 +38,12 @@ func callGreetFullName(client greetpb.GreetServiceClient)  {
 		log.Fatalf("Error in sending full name request : %v", err.Error())
 	}
 
-	fmt.Println("Response of full name is ", res.Result)
+	fn := res.Greet.FirstName
+	ln := res.Greet.LastName
+
+	result := fn + " " + ln
+
+	fmt.Println("Response of full name is ", result)
 }
 
 func main() {

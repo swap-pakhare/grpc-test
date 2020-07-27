@@ -25,15 +25,13 @@ func (s server) Greet(ctx context.Context, request *greetpb.GreetRequest) (*gree
 	return &greetpb.GreetResponse{Result: result}, nil
 }
 
-func (s server) GreetFullName(ctx context.Context, request *greetpb.GreetRequest) (*greetpb.GreetResponse, error) {
+func (s server) GreetFullName(ctx context.Context, request *greetpb.GreetRequest) (*greetpb.GreetFullNameResponse, error) {
 	fmt.Println("Full Name function called")
 
-	firstName := request.GetGreeting().FirstName
-	lastName := request.GetGreeting().LastName
+	firstName := strings.ToUpper(request.GetGreeting().FirstName)
+	lastName := strings.ToUpper(request.GetGreeting().LastName)
 
-	results := "Hello " + strings.ToUpper(firstName + " " + lastName)
-
-	return  &greetpb.GreetResponse{Result: results}, nil
+	return &greetpb.GreetFullNameResponse{Greet: &greetpb.Greeting{FirstName: firstName, LastName: lastName}}, nil
 }
 
 func main() {

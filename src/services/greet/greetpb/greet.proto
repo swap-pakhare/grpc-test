@@ -17,7 +17,11 @@ message GreetResponse {
   string result = 1;
 }
 
+message GreetFullNameResponse {
+  Greeting greet = 1;
+}
+
 service GreetService {
   rpc Greet(GreetRequest) returns (GreetResponse){}
-  rpc GreetFullName(GreetRequest) returns (GreetResponse){}
+  rpc GreetFullName(GreetRequest) returns (GreetFullNameResponse){}
 }
